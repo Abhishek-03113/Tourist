@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ destination.name }}</h1>
+        <img src="{{ destination.image_url }}" alt="{{ destination.name }}" height="500" width="500">
+        <p><strong>Description:</strong> {{ destination.description }}</p>
+        <p><strong>Price:</strong> ${{ destination.price }}</p>
+        <p><strong>Available Seats:</strong> {{ destination.available_seats }}</p>
+        <p><strong>Date:</strong> {{ destination.date }}</p>
+        <!-- You can display other destination details here -->
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <h1>Admin Dashboard</h1>
+
+  <h2>Booked Destination Trips</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Destination</th>
+        <th>Seats</th>
+        <th>Total Price</th>
+        <th>Booking Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking, user, destination in booked_destinations %}
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ destination.name }}</td>
+        <td>{{ booking.seats }}</td>
+        <td>{{ booking.total_price }}</td>
+        <td>{{ booking.booking_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Booked Tour Packages</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Package Name</th>
+        <th>Seats</th>
+        <th>Total Price</th>
+        <th>Booking Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking, user, package in tour_packages %}
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ package.name }}</td>
+        <td>{{ booking.seats }}</td>
+        <td>{{ booking.total_price }}</td>
+        <td>{{ booking.booking_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endblock %}
+</div>

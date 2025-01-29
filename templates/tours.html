@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block content %} {% if msg %}
+<div class="alert alert-success" role="alert">{{ message }}</div>
+{% endif %}
+<div class="container mt-5">
+  <h1>Tour Packages</h1>
+  <br />
+  {% if isAdmin %}
+  <div class="text-left">
+    <a href="/addPackage" class="btn btn-primary">Add Tour Packages</a>
+  </div>
+  {% endif %}
+  <br />
+
+  <div class="row">
+    <div class="col-md-8 mb-4">
+      {% for package in packages %}
+      <div class="card">
+        <img
+          src="{{ package.image_url }}"
+          class="card-img-top img-fluid"
+          alt="{{ package.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ package.name }}</h5>
+          <p class="card-text">{{ package.description }}</p>
+          <p class="card-text">Price: ${{ package.price }}</p>
+          <p class="card-text">
+            Available Seats: {{ package.available_seats }}
+          </p>
+        </div>
+
+        {% if isAdmin %}
+        <div class="card-footer">
+          <div class="container-fluid">
+            <a href="/view_package/{{ package.id }}" class="btn btn-primary"
+              >View</a
+            >
+            <!-- <a href="/editPackage/{{ package.id }}" class="btn btn-warning"
+              >Edit</a
+            > -->
+            <a href="/delete_package/{{ package.id }}" class="btn btn-danger"
+              >Delete</a
+            >
+          </div>
+        </div>
+        {% endif %} {% if isCustomer %}
+        <div class="card-footer">
+          <div class="container-fluid">
+            <a href="/view_package/{{ package.id }}" class="btn btn-primary"
+              >View</a
+            >
+            <a href="/book_package/{{ package.id }}" class="btn btn-warning"
+              >Book Package</a
+            >
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endblock %}
+</div>

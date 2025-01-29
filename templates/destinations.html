@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-mt-4">
+  <h1>Travel Destinations</h1>
+
+  <br />
+  {% if isAdmin %}
+  <div class="text-left">
+    <a href="/addDestination" class="btn btn-primary">Add Destination</a>
+  </div>
+
+  {% endif %}
+
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-md-8 mb-4">
+      {% for destination in destinations %}
+      <div class="card">
+        <img
+          src="{{ destination.image_url }}"
+          class="card-img-top"
+          alt="{{ destination.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ destination.name }}</h5>
+          <p class="card-text">
+            Available Seats: {{ destination.available_seats }}
+          </p>
+        </div>
+        {% if isAdmin %}
+        <div class="card-footer">
+          <div class="container-fluid">
+            <a
+              href="/view_destination/{{ destination.id }}"
+              class="btn btn-primary"
+              >View</a
+            >
+            <!-- <a
+              href="/editDestination/{{ destination.id }}"
+              class="btn btn-warning"
+              >Edit</a
+            > -->
+            <a
+              href="/delete_destination/{{ destination.id }}"
+              class="btn btn-danger"
+              >Delete</a
+            >
+          </div>
+
+          {% endif %} {% if isCustomer %}
+          <div class="card-footer">
+            <div class="container-fluid">
+              <a
+                href="/view_destination/{{ destination.id }}"
+                class="btn btn-primary"
+                >View</a
+              >
+              <a
+                href="/book_destination/{{ destination.id }}"
+                class="btn btn-warning"
+                >Book Trip
+              </a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
